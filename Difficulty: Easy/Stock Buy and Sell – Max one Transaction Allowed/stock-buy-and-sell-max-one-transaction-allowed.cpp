@@ -8,13 +8,15 @@ class Solution {
   public:
     int maximumProfit(vector<int> &prices) {
         // code here
-        int maxProfit=0, minSoFar=prices[0];
-        for(int i=0; i<prices.size(); i++){
-            minSoFar = min(minSoFar, prices[i]);
-            int profit = prices[i]-minSoFar;
-            maxProfit = max(maxProfit, profit);
+        int minp = prices[0];
+        int maxP = 0;
+        for(int i=1; i<prices.size(); i++){
+            if(minp<prices[i]){
+                maxP = max(maxP, prices[i]-minp);
+            }
+            minp = min(minp, prices[i]);
         }
-        return maxProfit;
+        return maxP;
     }
 };
 
@@ -38,7 +40,6 @@ int main() {
         Solution ob;
         int ans = ob.maximumProfit(prices);
         cout << ans << endl;
-        cout << "~" << endl;
     }
     return 0;
 }
