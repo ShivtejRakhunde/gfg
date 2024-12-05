@@ -8,7 +8,27 @@ class Solution {
   public:
     void sort012(vector<int>& arr) {
         // code here
-        sort(arr.begin(),arr.end());
+        int mp[3] = {0};
+        for(auto it : arr)
+        {
+            mp[it]++;
+        }
+        int ind = 0;
+        for(int j=0; j<mp[0]; j++)
+        {
+            arr[ind] = 0;
+            ind++;
+        }
+        for(int j=0; j<mp[1]; j++)
+        {
+            arr[ind] = 1;
+            ind++;
+        }
+        for(int j=0; j<mp[2]; j++)
+        {
+            arr[ind] = 2;
+            ind++;
+        }
     }
 };
 
@@ -38,6 +58,7 @@ int main() {
         }
 
         cout << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
