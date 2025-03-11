@@ -1,5 +1,5 @@
 //{ Driver Code Starts
-// Initial Template for C++// C program to find n'th Node in linked list
+// Initial Template for C++
 #include <algorithm>
 #include <bits/stdc++.h>
 #include <cmath>
@@ -27,6 +27,7 @@ struct Node {
 
 
 // } Driver Code Ends
+
 /* Linked List Node structure:
 
 struct Node
@@ -39,40 +40,31 @@ struct Node
 
 class Solution {
   public:
-    // Function to reverse a linked list.
-    struct Node* reverseList(struct Node* head) {
+    Node* reverseList(struct Node* head) {
         // code here
-        // return head of reversed list
-        if(!head) return head;
+        if(!head) return NULL;
         
-        Node* first = NULL;
-        Node* second = head;
-        Node* third = head->next;
-        
-        
-        if(head->next == NULL){
-            return head;
+        Node* back = NULL;
+        Node* curr = head;
+        Node* prev;
+        while(curr!=NULL){
+            prev = curr;
+            curr = curr->next;
+            prev->next = back;
+            back = prev;
         }
+        head = back;
         
-        // while loop to reverse
-        
-        while(third != NULL){
-            second->next = first;
-            first = second;
-            second = third;
-            third = third->next;
-        }
-        second->next = first;
-        
-        return second;
+        return head;
     }
 };
 
 
+
 //{ Driver Code Starts.
 
-void printList(struct Node *head) {
-    struct Node *temp = head;
+void printList(Node *head) {
+    Node *temp = head;
     while (temp != NULL) {
         printf("%d ", temp->data);
         temp = temp->next;
@@ -85,7 +77,7 @@ int main() {
     cin >> T;
     cin.ignore();
     while (T--) {
-        struct Node *head = NULL, *tail = NULL;
+        Node *head = NULL, *tail = NULL;
 
         vector<int> arr;
         string input;
@@ -98,7 +90,6 @@ int main() {
         int index = 0;
         n = arr.size();
         if (n != 0) {
-
             head = new Node(arr[0]);
             tail = head;
         }
@@ -114,7 +105,7 @@ int main() {
 
         printList(head);
         cout << endl;
-        cout << "~" << endl;
+        cout << "~\n";
     }
     return 0;
 }
